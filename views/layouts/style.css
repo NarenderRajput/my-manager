@@ -23,6 +23,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+
 .ms {
     margin-left: 17%;
 }
@@ -34,6 +35,35 @@
 
 .h-full {
     height: 800px!important;
+}
+
+.position-absolute-top {
+    position: absolute!important;
+    bottom: 10px;
+    color: white;
+}
+
+.position-absolute-profile-div {
+    position: absolute!important;
+    top: 20%;
+    left: 50px;
+}
+
+.position-absolute-profilepic {
+    position: absolute;
+    bottom: 130px;
+    left: 29%;
+    padding: 8px;
+    background-color: #ffff;
+    color: black;
+    border-radius: 19px;
+}
+
+.bg-transparent {
+    background-color: #ffff;
+    color: black;
+    border-radius: 10px;
+
 }
 
 @media only screen and (max-width:600px)  {
