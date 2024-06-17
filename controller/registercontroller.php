@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if (isset($_SESSION["nameErr"]) && isset($_SESSION["emailErr"]) && isset($_SESSION["passwordErr"])) {
-    header('location: /echo/views/auth/register.php');
+    header('location:'.ROOT.'/views/auth/register.php');
   } else {
     insert_data($conn, $data);
   }

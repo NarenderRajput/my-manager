@@ -1,5 +1,6 @@
 <?php
 include "../config/app.php";
+include "../helper/common.php";
 include "../config/db.php";
 $email = $password = $check_b = $data = "";
 
@@ -30,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_SESSION['emailErr']) && isset($_SESSION['passwordErr']) && isset($_SESSION["check_bErr"])) {
-        header('location: /echo/views/auth/login.php');
+        header('location: '.ROOT.'/views/auth/login.php');
     } else {
 
         if (empty($emailErr) && empty($passwordErr) && empty($check_bErr)) {
-        check_data($email, $password, $check_b, $conn);
+        check_data($email, $password, $conn);
         }
     }
 
@@ -48,8 +49,7 @@ function test_input($data) {
   return $data;
 }
 
-function check_data($email, $password, $conn)
-{
+function check_data($email, $password, $conn) {
     $sql = "SELECT * FROM users where email = '$email' and password = '$password'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {

@@ -17,7 +17,7 @@
                   </button>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="account/editProfile.php">Edit Profile</a></li>
-                    <li><a class="dropdown-item" href="<?php echo controller_path() . "/delete_account_controller.php"?>">Delete Profile</a></li>
+                    <li><a class="dropdown-item" href="">Delete Profile</a></li>
                   </ul>
                 </div>
               </div>

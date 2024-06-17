@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
  if (count($_SESSION["errors"]) > 0) {
-    header('location: /echo/views/account/editProfile.php');
+    header('location: '.ROOT.'/views/account/editProfile.php');
     exit;
   } else {
     update_data($conn, $data);

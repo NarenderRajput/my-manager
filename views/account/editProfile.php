@@ -61,5 +61,4 @@ $user = $_SESSION['users'];
 
 <?php
 include "../layouts/d_footer.php";
-include "../layouts/footer.php";
 ?>
