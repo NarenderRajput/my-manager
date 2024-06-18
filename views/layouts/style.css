@@ -28,6 +28,10 @@
     margin-left: 17%;
 }
 
+.p-lr {
+    padding: 5px 30px;
+}
+
 .wh-50 {
     width: 50px;
     height: 50px;
@@ -35,6 +39,18 @@
 
 .h-full {
     height: 800px!important;
+}
+
+.h-fix {
+    height: 530px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #ffff;
+    border-radius: 50%;
 }
 
 .position-absolute-top {
@@ -51,9 +67,8 @@
 
 .position-absolute-profilepic {
     position: absolute;
-    bottom: 130px;
+    top: 290px;
     left: 29%;
-    padding: 8px;
     background-color: #ffff;
     color: black;
     border-radius: 19px;
