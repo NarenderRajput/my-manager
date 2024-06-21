@@ -10,7 +10,7 @@ include "../../config/app.php";
                 <div class="w-50 p-5">
                     <h3>Sign Up</h3>
                     <p><b>Sign Up by entring the information below</b></p>
-                    <form class="mt-5" action="../../controller/registercontroller.php" method="POST">
+                    <form class="mt-5" action="../../controller/RegisterController.php" method="POST">
                         <div class="m-3">
                             <div class="col mb-3 ">
                                 <div class="d-flex justify-content-around">
@@ -45,7 +45,7 @@ include "../../config/app.php";
                                 <?php  } ?>
                             </div>
                             <button type="submit" class="m-3 ps-5 pe-5 btn  btn-primary">Register</button>
-                            <p class="m-2"><a href="login.php">Already Have an Account</a></p>
+                            <p class="m-2"><a href="log_in.php">Already Have an Account</a></p>
                         </div>
                     </form>
                 </div>

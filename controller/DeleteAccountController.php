@@ -22,7 +22,7 @@ function delete_data($conn, $user_id ) {
 }
 
 function redirectToLogin() {
-    header('location: '.ROOT.'/views/auth/login.php');
+    header('location: '.ROOT.'/views/auth/log_in.php');
     exit;
 }
 ?>

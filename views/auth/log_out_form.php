@@ -3,7 +3,7 @@
         <title>Logout Form</title>
     </head>
     <body>
-        <form action="../../controller/logout.php">
+        <form action="../../controller/LogOut.php">
             <button type="submit">Log Out</button>
         </form>
     </body>

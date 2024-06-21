@@ -7,7 +7,7 @@
       ?>
 
 
-      <form action="../controller/logout.php">
+      <form action="../controller/LogOut.php">
         <div class="d-flex align-items-center">
           <button type="submit" class="m-3 pt-3 pb-3 ps-5 pe-5 btn btn-primary">Log Out</button>
           <div class="dropdown">
@@ -15,7 +15,7 @@
               Profile
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="account/editProfile.php">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="account/edit_profile.php">Edit Profile</a></li>
               <li><a class="dropdown-item" href="">Delete Profile</a></li>
             </ul>
           </div>

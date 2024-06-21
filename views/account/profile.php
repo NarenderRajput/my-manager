@@ -13,9 +13,9 @@
 <body>
 
 
-    <div class=" m-2 text-center">
+    <div class=" mt-2">
         <div class="position-relative">
-            <img src="../images/Nature.png" class="w-100 h-50" alt="">
+            <img src="../images/Nature.png" class="w-100 img-h-50" alt="">
             <div class="position-absolute-top w-100 d-flex justify-content-center text-left">
                 <div class="transform-trans">
                     <h1><b>Crid Kore</b> <i class="fa-solid fa-shield" style="color: #FFD43B;"></i> </h1>
@@ -28,16 +28,20 @@
                 <img src="../images/profile-pic.jpeg" alt="" class="position-relative w-100 p-height">
                 <div class="position-absolute-profilepic d-flex gap-5  justify-contant-center align-items-baseline">
                     <div>
-                        <h5 class="p-lr m-0">Follow Crid</h5>
+                        <h5 id="selectImg" class="p-lr m-0">Edit Photo</h5>
+                        <form id="form" action="../../controller/photoupdate.php" method = "post" enctype="multipart/form-data">
+                            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+                        </form>
                     </div>
                     <div>
                         <p class="icon"><i class="fa-solid fa-ellipsis" style="color: #00ffff;"></i></p>
                     </div>
                 </div>
             </div>
-            <div class="m-3">
+            <div class="m-3 text-l">
                 <h4>About</h4>
                 <p class="border-bottom pb-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum quas animi quisquam ut quam reprehenderit, labore cum ratione dolores nemo illo saepe perferendis! Sunt illo voluptas excepturi nostrum! Quam, explicabo?</p>
+
 
                 <div class="d-flex justify-content-between">
                     <p><b>FOLLOWERS</b></p>
@@ -79,7 +83,7 @@
                     <div class="form-w">
                         <h2>Edit Profile</h2>
                         <p><b>Update Profile by entring the information below</b></p>
-                        <form class="mt-5" action="../../controller/updateprofilecontroller.php" method="POST">
+                        <form class="mt-5" action="../../controller/UpdateProfileController.php" method="POST">
                             <div class="m-3">
                                 <div class="col mb-3 ">
                                     <div class="d-flex justify-content-around">
@@ -121,6 +125,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const selectImg = document.getElementById("selectImg");
+        const upload = document.querySelector("#fileToUpload");
+        const form = document.getElementById("form");
+
+        selectImg.addEventListener("click", function() {
+            upload.click();
+        })
+
+        upload.addEventListener('change', function() {
+            console.log(this.value,form);
+            form.submit();
+        })
+
+    
+    </script>
 
 </body>
 

@@ -27,7 +27,7 @@ $user = $_SESSION['users'];
         <?php
         include "../layouts/side_nav.php";
         ?>
-        <div class=" card w-100 border-bottom-0 text-center ">
+        <div class=" card w-100 border-bottom-0 ">
             <div class=" card-body">
                 <?php
                 include "../layouts/top_nav.php";

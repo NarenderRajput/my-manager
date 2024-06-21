@@ -9,7 +9,7 @@ include "../../config/app.php";
                 <div class="w-50 mt-5">
                     <h3>Welcome</h3>
                     <p><b>Sign in by entring the information below</b></p>
-                    <form class="mt-5 m-3" action="../../controller/logincontroller.php" method="POST">
+                    <form class="mt-5 m-3" action="../../controller/LogInController.php" method="POST">
                         <div class="m-3">
                             <div class="d-flex justify-content-around">
                                 <input type="email" name="email" class="form-control w-75" placeholder="Email address" id="exampleInputEmail1" aria-describedby="emailHelp">

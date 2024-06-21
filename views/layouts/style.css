@@ -22,11 +22,13 @@
     height: 550px;
 }
 
-.transform-trans {
-    transform: translateX(-90%);
+.img-h-50 {
+    height: 300px;
 }
 
-
+.transform-trans {
+    transform: translateX(-25%);
+}
 
 .shadow {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -38,7 +40,7 @@
 }
 
 .p-lr {
-    padding: 5px 30px;
+    padding: 5px 13px;
     background-color: #ffff;
     color: black;
     border-radius: 19px;
@@ -54,7 +56,7 @@
 }
 
 .h-fix {
-    height: 500px;
+    height: 680px;
 }
 
 .wc {
@@ -77,8 +79,12 @@
     transform: translateY(10px);
 }
 
+.text-l {
+    text-align: left;
+}
+
 .p-transform {
-    transform: translateX(-5%);
+    transform: translateX(-4%);
 }
 
 .i-fs {
@@ -91,20 +97,21 @@
 
 .position-absolute-top {
     position: absolute!important;
+    text-align: left;
     bottom: 10px;
     color: white;
 }
 
 .position-absolute-profile-div {
     position: absolute!important;
-    top: 25%;
+    top: 30%;
     left: 50px;
 }
 
 .position-absolute-profilepic {
     position: absolute;
     bottom: 5%;
-    left: 25%;
+    left: 20%;
 }
 
 .bg-transparent {

@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_SESSION['emailErr']) && isset($_SESSION['passwordErr']) && isset($_SESSION["check_bErr"])) {
-        header('location: '.ROOT.'/views/auth/login.php');
+        header('location: '.ROOT.'/views/auth/log_in.php');
     } else {
 
         if (empty($emailErr) && empty($passwordErr) && empty($check_bErr)) {
