@@ -1,58 +1,62 @@
 <?php
 include "../config/app.php";
 include "../helper/common.php";
+include "../config/db.php";
+
+
+unset($_SESSION["errors"]);
 
 $name = $url = $discription = $price = $deadline = "";
 
-dd($_SESSION);
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (empty($_POST["name"])) {
-        $_SESSION["nameErr"] = "Name is require";
+        $_SESSION["errors"]["nameErr"] = "Name is require";
     } else {
         $name = test_input($_post["name"]);
         if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-            $_SESSION["nameErr"] = "Only letters and white space allowed";
+            $_SESSION["errors"]["nameErr"] = "Only letters and white space allowed";
         } else {
             $data .= "'$name'";
         }
     }
 
     if (empty($_POST["url"])) {
-        $_SESSION["urlErr"] = "URL is require";
+        $_SESSION["errors"]["urlErr"] = "URL is require";
     } else {
         $url = test_input($_POST["url"]);
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
-            $_SESSION["urlErr"] = "Invalid URL";
+            $_SESSION["errors"]["urlErr"] = "Invalid URL";
         } else {
             $data .= "'$url'";
         }
     }
 
     if (empty($_POST["discription"])) {
-        $_SESSION["discriptionErr"] = "Discription is require";
+        $_SESSION["errors"]["discriptionErr"] = "Discription is require";
     } else {
         $discription = test_input($_POST["discription"]);
         $data .= "'$discription'";
     }
 
     if (empty($_POST["price"])) {
-        $_SESSION["priceErr"] = "Price is require";
+        $_SESSION["errors"]["priceErr"] = "Price is require";
     } else {
         $price = test_input($_POST["price"]);
         $data .= "'$price'";
     }
 
     if (empty($_POST["deadline"])) {
-        $_SESSION["deadlineErr"] = "Deadline is require";
+        $_SESSION["errors"]["deadlineErr"] = "Deadline is require";
     } else {
         $deadline = test_input($_POST["deadline"]);
         $data .= "'$deadline'";
     }
 
     include "ProjectFileUpload.php";
-    
-    if(isset($_SESSION["nameErr"]) || isset($_SESSION["urlErr"]) || isset($_SESSION["discriptionErr"]) || isset($_SESSION["priceErr"]) || isset($_SESSION["deadlineErr"]) || isset($_SESSION["photoErr"])) {
+    dd($_SESSION["errors"]);
+    if(isset($_SESSION["errors"]["nameErr"]) || isset($_SESSION["errors"]["urlErr"]) || isset($_SESSION["errors"]["discriptionErr"]) || isset($_SESSION["errors"]["priceErr"]) || isset($_SESSION["errors"]["deadlineErr"]) || isset($_SESSION["errors"]["photoErr"])) {
         header("location: ../views/projectfile/project_file.php");
     } else {
         insert_data($conn, $data);

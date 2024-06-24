@@ -9,6 +9,7 @@ include "../config/login_guard.php";
 
 <?php
 include "../views/layouts/d_header.php";
+$controller_path = "../"; 
 ?>
 <div class="h-full">
   <div class="d-flex h-full bg-danger-subtle ">

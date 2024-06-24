@@ -5,6 +5,7 @@ include "../../helper/common.php";
 include "../../config/login_guard.php";
 
 $asset = "../";
+$controller_path = "../../"; 
 
 ?>
 

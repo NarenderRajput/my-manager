@@ -2,6 +2,9 @@
 include "../../config/app.php";
 include "../../helper/common.php";
 include "../layouts/d_header.php";
+
+$errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
+$controller_path = "../../"; 
 ?>
 
 <div class="w-100">
@@ -21,38 +24,38 @@ include "../layouts/d_header.php";
 
                     <input type="text" name="name" placeholder="Project Name" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
-                    if (isset($_SESSION["nameErr"])) { ?>
-                        <p class="text-danger"><?php echo $_SESSION["nameErr"] ?></p>
+                    if (isset($errors["nameErr"])) { ?>
+                        <p class="text-danger"><?php echo $errors["nameErr"] ?></p>
                     <?php  } ?>
 
                     <input type="text" name="url" placeholder="URL" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
-                    if (isset($_SESSION["urlErr"])) { ?>
-                        <p class="text danger"><?php echo $_SESSION["urlErr"] ?></p>
+                    if (isset($errors["urlErr"])) { ?>
+                        <p class="text danger"><?php echo $errors["urlErr"] ?></p>
                     <?php } ?>
 
                     <textarea name="discription" placeholder="Discription" id="" class="form-control w-50 mb-2 mt-2"></textarea>
                     <?php
-                    if (isset($_SESSION["discriptionErr"])) { ?>
-                        <p class="text-danger"><?php echo $_SESSION["discriptionErr"] ?></p>
+                    if (isset($errors["discriptionErr"])) { ?>
+                        <p class="text-danger"><?php echo $errors["discriptionErr"] ?></p>
                     <?php } ?>
 
                     <input type="number" name="price" placeholder="Price" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
-                    if (isset($_SESSION["priceErr"])) { ?>
-                        <p class="text-danger"><?php echo $_SESSION["priceErr"] ?></p>
+                    if (isset($errors["priceErr"])) { ?>
+                        <p class="text-danger"><?php echo $errors["priceErr"] ?></p>
                     <?php } ?>
 
                     <input type="date" name="deadline" placeholder="Deadline" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
-                    if (isset($_SESSION["deadlineErr"])) { ?>
-                        <p class="text-danger"><?php echo $_SESSION["deadlineErr"] ?></p>
+                    if (isset($errors["deadlineErr"])) { ?>
+                        <p class="text-danger"><?php echo $errors["deadlineErr"] ?></p>
                     <?php } ?>
 
                     <img id="preview_img" src="../images/profile-pic.jpeg" alt="" class="w-25"> <br>
                     <?php
-                    if (isset($_SESSION["photoErr"])) { ?>
-                        <p class="text-danger"><?php echo $_SESSION["photoErr"] ?></p>
+                    if (isset($errors["photoErr"])) { ?>
+                        <p class="text-danger"><?php echo $errors["photoErr"] ?></p>
                     <?php } ?>
 
                     <button type="submit" class="mt-2 p-2 ps-4 pe-4 btn btn-primary" class="w-75">Submit Form</button>
