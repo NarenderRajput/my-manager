@@ -25,11 +25,11 @@
         </div>
         <div class="position-absolute-profile-div text-left w-25 h-fix shadow ">
             <div class="position-relative">
-                <img src="../images/profile-pic.jpeg" alt="" class="position-relative w-100 p-height">
+                <img id="preview_img" src="<?php echo isset($user["photo"]) ? "../../uploads/" . $user["photo"] : "../images/profile-pic.jpeg"; ?>" alt="" class="position-relative w-100 p-height">
                 <div class="position-absolute-profilepic d-flex gap-5  justify-contant-center align-items-baseline">
                     <div>
-                        <h5 id="selectImg" class="p-lr m-0">Edit Photo</h5>
-                        <form id="form" action="../../controller/photoupdate.php" method = "post" enctype="multipart/form-data">
+                        <h5 id="upload_img" class="p-lr m-0">Upload Photo</h5>
+                        <form id="form" action="../../controller/photoupdate.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
                         </form>
                     </div>
@@ -127,20 +127,25 @@
     </div>
 
     <script>
-        const selectImg = document.getElementById("selectImg");
+        const upload_photo = document.getElementById("upload_img");
         const upload = document.querySelector("#fileToUpload");
         const form = document.getElementById("form");
+        const preview_img = document.getElementById("preview_img");
 
-        selectImg.addEventListener("click", function() {
+        preview_img.addEventListener("click", function() {
             upload.click();
         })
 
         upload.addEventListener('change', function() {
-            console.log(this.value,form);
-            form.submit();
+            console.log(this.files[0], form);
+           // form.submit();
+           preview_img.src = URL.createObjectURL(this.files[0]);
         })
 
-    
+        upload_photo.addEventListener('click', function(){
+            form.submit();
+        })
+        
     </script>
 
 </body>

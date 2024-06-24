@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 include "../../config/app.php";
@@ -30,13 +27,17 @@ $user = $_SESSION['users'];
         <div class=" card w-100 border-bottom-0 ">
             <div class=" card-body">
                 <?php
+                if (isset($_SESSION['error'])) { ?>
+                    <p class="text-danger"><?php echo $_SESSION['error'] ?></p>
+                <?php  } ?>
+                <?php
                 include "../layouts/top_nav.php";
                 ?>
 
                 <?php
                 include "profile.php";
                 ?>
-                
+
             </div>
         </div>
     </div>
