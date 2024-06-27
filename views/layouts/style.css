@@ -1,6 +1,10 @@
-.btn {
+.w-75per {
     width: 75%;
 }
+
+.w-200px {
+    width: 200px;
+} 
 
 .d-none {
     display: block!important;

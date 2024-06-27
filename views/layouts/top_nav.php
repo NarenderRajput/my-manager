@@ -16,7 +16,7 @@
             </button>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="account/edit_profile.php">Edit Profile</a></li>
-              <li><a class="dropdown-item" href="">Delete Profile</a></li>
+              <li><a class="dropdown-item" href="../../controller/DeleteAccountController.php">Delete Profile</a></li>
             </ul>
           </div>
         </div>

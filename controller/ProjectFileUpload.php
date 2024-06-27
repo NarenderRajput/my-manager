@@ -4,8 +4,8 @@
 if (!isset($_FILES["photo"]) || ($_FILES["photo"]["error"]) > 0) {
     $_SESSION["errors"]["photoErr"] = "file is missing";
 } else {
-    $target_dir = "../uploads";
-    $file_name = basename($_FILES["photo"]["name"]);
+    $target_dir = "../uploads/";
+    $file_name = time() . basename($_FILES["photo"]["name"]);
     $target_file = $target_dir . $file_name;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -30,11 +30,13 @@ if (!isset($_FILES["photo"]) || ($_FILES["photo"]["error"]) > 0) {
         $_SESSION["errors"]["photoErr"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
     }
 
-    if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-        //$data = "photo =" . "'$file_name'";
-        $data .= "'$file_name'";
-    } else {
-        $_SESSION["errors"]["photoErr"] = "Sorry, there was an error uploading your file.";
-    }
-
+    if (!isset($_SESSION["errors"]["photoErr"])) {
+        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
+            //$data = "photo =" . "'$file_name'";
+         $data .= "photo='$file_name'";
+        } else {
+            $_SESSION["errors"]["photoErr"] = "Sorry, there was an error uploading your file.";
+        } 
+    } 
 }
+

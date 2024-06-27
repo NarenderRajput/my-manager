@@ -6,7 +6,7 @@
           <li class="nav-item"><i class="fa-3x fa-solid fa-database m-3 wh-50"></i></li>
         </a>
         
-        <a href="../projectfile/project_file.php">
+        <a href="<?php echo $view_path. 'projects/project_listing.php' ?>">
         <li class="nav-item"><i class="fa-3x fa-solid fa-earth-americas m-3 wh-50"></i></li>
         </a>
 

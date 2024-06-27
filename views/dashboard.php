@@ -4,6 +4,7 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/login_guard.php";
 
+$view_path = "";
 ?>
 
 

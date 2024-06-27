@@ -5,6 +5,7 @@ include "../layouts/d_header.php";
 
 $errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
 $controller_path = "../../"; 
+$view_path = "../";
 ?>
 
 <div class="w-100">

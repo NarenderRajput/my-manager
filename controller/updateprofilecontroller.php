@@ -1,5 +1,6 @@
 <?php
 include "../config/app.php";
+include "../helper/common.php";
 include "../config/db.php";
 unset($_SESSION['errors']); 
 $name = $data = $email = $password = "";
