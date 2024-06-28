@@ -53,14 +53,15 @@ $view_path = "../";
                         <p class="text-danger"><?php echo $errors["deadlineErr"] ?></p>
                     <?php } ?>
 
-                    <img id="preview_img" src="../images/profile-pic.jpeg" alt="" class="w-25"> <br>
+                    <img id="preview_img" src="../images/profile-pic.jpeg" alt="" class="w-25">
+                    <input type="file" name="photo" id="upload" style="display: none;">
+                    <br>
                     <?php
                     if (isset($errors["photoErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["photoErr"] ?></p>
                     <?php } ?>
 
                     <button type="submit" class="mt-2 p-2 ps-4 pe-4 btn btn-primary" class="w-75">Submit Form</button>
-                    <input type="file" name="photo" id="upload" style="display: none;">
 
 
                 </form>

@@ -9,8 +9,9 @@
         <a href="<?php echo $view_path. 'projects/project_listing.php' ?>">
         <li class="nav-item"><i class="fa-3x fa-solid fa-earth-americas m-3 wh-50"></i></li>
         </a>
-
+        <a href="team/mamber_listing.php">
         <li class="nav-item"><i class="fa-3x fa-regular fa-circle-play m-3 wh-50"></i></li>
+        </a>
       </ul>
 
     </nav>

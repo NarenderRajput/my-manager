@@ -21,6 +21,8 @@ function get_project($conn, $project_id)
 
 $project = get_project($conn, $project_id);
 
+
+
 $errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
 $controller_path = "../../";
 $view_path = "../";

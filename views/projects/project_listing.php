@@ -68,7 +68,7 @@ include "../layouts/d_header.php";
                             <td><?php echo $project["price"] ?></td>
                             <td><?php echo $project["deadline"] ?></td>
                             <td><a href="<?php echo 'edit_project.php?id=' . $project["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Project</button></a> 
-                            <a href="<?php echo '../../controller/DeleteProjectFileController.php?id=' . $project["id"] ?>"><button type="button" class="btn btn-primary">Delete Project</button></td></a>
+                            <a href="<?php echo '../../controller/DeleteProjectFileController.php?id=' . $project["id"] ?>"><button type="button" class="btn btn-primary">Delete Project</button></a></td>
                         </tr>
                         <?php } ?>
                     </tbody>
