@@ -4,7 +4,7 @@ include "../../helper/common.php";
 include "../layouts/d_header.php";
 
 $errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
-$controller_path = "../../"; 
+$controller_path = "../../";
 $view_path = "../";
 ?>
 
@@ -73,7 +73,6 @@ $view_path = "../";
 
 
 
-</div>
 
 
 

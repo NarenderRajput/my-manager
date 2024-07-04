@@ -6,11 +6,14 @@
           <li class="nav-item"><i class="fa-3x fa-solid fa-database m-3 wh-50"></i></li>
         </a>
         
-        <a href="<?php echo $view_path. 'projects/project_listing.php' ?>">
+        <a href="<?php echo $view_path. 'projects/project_listing.php' ?>" >
         <li class="nav-item"><i class="fa-3x fa-solid fa-earth-americas m-3 wh-50"></i></li>
         </a>
-        <a href="team/mamber_listing.php">
+        <a href="<?php echo $view_path. 'team/member_listing.php' ?>">
         <li class="nav-item"><i class="fa-3x fa-regular fa-circle-play m-3 wh-50"></i></li>
+        </a>
+        <a href="<?php echo $view_path . 'task/task_listing.php' ?>">
+        <li class="nav-item"><i class="fa-3x fa-solid fa-list-check m-3 wh-50"></i></li>
         </a>
       </ul>
 

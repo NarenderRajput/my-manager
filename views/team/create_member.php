@@ -1,12 +1,13 @@
 <?php
+$controller_path = "../../";
+$view_path = "../";
+$asset = '../';
+
 include "../../config/app.php";
 include "../../helper/common.php";
 include "../layouts/d_header.php";
 
 $errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
-
-$controller_path = "../../";
-$view_path = "../";
 ?>
 
 <div class="w-100">
@@ -21,10 +22,10 @@ $view_path = "../";
             include "../layouts/top_nav.php";
             ?>
             <div class="m-3 p-3">
-                <h2>Create Mamber</h2>
-                <form action="../../controller/SaveMamberController.php?id=" method="POST" enctype="multipart/form-data">
+                <h2>Create member</h2>
+                <form action="../../controller/SaveMemberController.php" method="POST" enctype="multipart/form-data">
 
-                    <input type="text" name="name" placeholder="Mamber Name" class="form-control w-50 mb-2 mt-2"> <br>
+                    <input type="text" name="name" placeholder="member Name" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
                     if (isset($errors["nameErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["nameErr"] ?></p>
@@ -49,11 +50,6 @@ $view_path = "../";
             </div>
         </div>
     </div>
-</div>
-
-
-
-
 </div>
 
 

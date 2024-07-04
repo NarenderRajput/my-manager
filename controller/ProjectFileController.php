@@ -2,6 +2,7 @@
 include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
+include "ProjectFileUpload.php";
 
 
 unset($_SESSION["errors"]);
@@ -56,7 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data .= "'$deadline',";
     }
 
-    include "ProjectFileUpload.php";
+    $file_name = upload_file();
+    if ($file_name) {
+        $data .= "'$file_name'" ;
+    }
     
     if(count($_SESSION["errors"]) > 0) {
         header("location: ../views/projects/create_project.php");

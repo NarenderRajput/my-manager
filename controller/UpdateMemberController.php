@@ -3,7 +3,8 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
 
-$mamber_id = $_GET["id"];
+$member_id = $_GET["id"];
+
 unset($_SESSION["errors"]);
 
 $firstname = $email = $password = $data = "";
@@ -23,32 +24,29 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    if(empty($_POST["email"])) {
-        $_SESSION["errors"]["emailErr"] = "Email is required";
-    } else {
+    if (empty($_POST["email"])) {
+        $_SESSION["errors"]["emailErr"] = "Email must required";
+    } else{
         $email = test_input($_POST["email"]);
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $_SESSION["errors"]["emailErr"] = "Invalid email Format";
-        } else {
+            $_SESSION["errors"]["emailErr"] = "Invalid Email format";
+          } else {
             $data .= "email='$email',";
-        }
+          }
     }
 
-    if(empty($_POST["password"])) {
-        $_SESSION["errors"]["passwordErr"] = "Password is required";
+    if (empty($_POST["password"])){
+        $_SESSION["errors"]["emailErr"] = "Password must required";
     } else {
         $password = test_input($_POST["password"]);
-        $data .= "password='password'";
-
+        $data .= "password='$password'";
     }
 
-    if(count($_SESSION["errors"]) > 0) {
-        header("location: ../views/team/create_mamber.php");
+    if (count($_SESSION["errors"]) > 0) {
+        header("location: ../views/team/edit_member.php");
     } else {
-        update_mamber($conn, $data, $mamber_id);
+        update_member($conn, $data, $member_id);
     }
-
-
 }
 
 function test_input($data) {
@@ -58,17 +56,16 @@ function test_input($data) {
     return  $data;
 }
 
-function update_mamber($conn, $data, $mamber_id) {
-    $sql = "UPDATE users SET " . $data . " WHERE id=" . $mamber_id;
+function update_member($conn, $data, $member_id) {
+    $sql = "UPDATE users SET " . $data . " WHERE id =" . $member_id;
+    
     if (mysqli_query($conn, $sql)) {
-        header("location: ../views/team/mamber_listing.php");
+        header("location: ../views/team/member_listing.php");
     } else {
-        echo "Error" . $sql . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
-
     mysqli_close($conn);
 }
-
 
 
 

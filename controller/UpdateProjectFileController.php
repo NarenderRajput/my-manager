@@ -2,11 +2,13 @@
 include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
+include "ProjectFileUpload.php";
 
 $project_id = $_GET["id"];
 unset($_SESSION["errors"]);
 
 $name = $url = $discription = $price = $deadline = $data = "";
+
 $_SESSION["errors"] = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -54,7 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data .= "deadline='$deadline',";
     }
 
-    include "ProjectFileUpload.php";
+    $file_name = upload_file();
+    if($file_name) {
+        $data .= "photo='$file_name'";
+    }
 
     if (count($_SESSION["errors"]) > 0) {
         header("location: ../views/projects/edit_project.php");
@@ -85,3 +90,5 @@ function update_data($conn, $data, $project_id)
     mysqli_close($conn);
 }
 
+
+?>
