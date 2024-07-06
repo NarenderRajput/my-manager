@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($_POST["url"])) {
-        $_SESSION["errors"]["urlErr"] = "URL is require";
+        //$_SESSION["errors"]["urlErr"] = "URL is require";
+        $data .= "'',";
     } else {
         $url = trim($_POST["url"]);
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $url)) {
@@ -37,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($_POST["discription"])) {
-        $_SESSION["errors"]["discriptionErr"] = "Discription is require";
+        //$_SESSION["errors"]["discriptionErr"] = "Discription is require";
+        $data .= "'',";
     } else {
         $discription = test_input($_POST["discription"]);
         $data .= "'$discription',";
@@ -86,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     function insert_data($conn, $data) {
         
         $sql = "INSERT INTO projects(user_id, projectname, url, discription, price, deadline, photo) VALUES($data)";
-    
+        
         if(mysqli_query($conn, $sql)) {
             header("location: ../views/projects/project_listing.php");
         } else {

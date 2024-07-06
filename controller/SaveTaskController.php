@@ -19,7 +19,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if(empty($_POST["discription"])) {
-        $_SESSION["errors"]["discriptionErr"] = "Discription is required";
+        //$_SESSION["errors"]["discriptionErr"] = "Discription is required";
+        $data .= "'$discription',";
     } else {
         $discription = test_input($_POST["discription"]);
         $data .= "'$discription',";
@@ -57,6 +58,7 @@ function test_input($data) {
 
 function insert_task($conn, $data) {
     $sql = "INSERT INTO tasks(user_id, title, discription, member_id, status) VALUES($data)";
+    
     if(mysqli_query($conn, $sql)) {
         header("location: ../views/task/task_listing.php");
     } else{

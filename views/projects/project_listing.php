@@ -49,6 +49,7 @@ include "../layouts/d_header.php";
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">Name </th>
+                            <th scope="col">URL </th>
                             <th scope="col">Discription</th>
                             <th scope="col">Price</th>
                             <th scope="col">Deadline</th>
@@ -64,6 +65,7 @@ include "../layouts/d_header.php";
                                 <img src="<?php echo '../../uploads/' . $project["photo"]?>">
                             </th>
                             <td><?php echo $project["projectname"] ?></td>
+                            <td><?php echo $project["url"] ?></td>
                             <td><?php echo $project["discription"] ?></td>
                             <td><?php echo $project["price"] ?></td>
                             <td><?php echo $project["deadline"] ?></td>

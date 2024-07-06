@@ -1,8 +1,9 @@
 <?php
 include "../config/app.php";
 include "../config/db.php";
-$name = $data = $email = $password = "";
-session_destroy();
+include "../helper/common.php";
+
+$name =  $data = $email = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -14,6 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $data .= "'$name',";
     }
+  }
+
+  if (empty($_POST["lastname"])) {
+    $data .= "'',";
+  } else {
+    $lastname = test_input($_POST["lastname"]);
+    $data .= "'$lastname',";
   }
 
 
@@ -34,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = test_input($_POST["password"]);
     $data .= "'$password'";
   }
-
-  if (isset($_SESSION["nameErr"]) && isset($_SESSION["emailErr"]) && isset($_SESSION["passwordErr"])) {
+  
+  if (isset($_SESSION["nameErr"]) || isset($_SESSION["emailErr"]) || isset($_SESSION["passwordErr"])) {
     header('location:'.ROOT.'/views/auth/register.php');
   } else {
     insert_data($conn, $data);
@@ -53,7 +61,7 @@ function test_input($data)
 
 function insert_data($conn, $data)
 {
-  $sql = "INSERT INTO users(firstname, email, password)
+  $sql = "INSERT INTO users(firstname, lastname, email, password)
   VALUES($data)";
   echo $sql;
   if (Mysqli_query($conn, $sql)) {

@@ -3,12 +3,13 @@
 function upload_file()
 {
     if (!isset($_FILES["photo"]) || ($_FILES["photo"]["error"]) > 0) {
-        $_SESSION["errors"]["photoErr"] = "file is missing";
+        //$_SESSION["errors"]["photoErr"] = "file is missing";
+        return false;
     } else {
         $target_dir = "../uploads/";
-        $file_name = time() . basename($_FILES["photo"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_dir . basename($_FILES["photo"]["name"]), PATHINFO_EXTENSION));
+        $file_name = time() . '.' . $imageFileType;
         $target_file = $target_dir . $file_name;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 
         $check = getimagesize($_FILES["photo"]["tmp_name"]);
@@ -25,7 +26,7 @@ function upload_file()
         }
 
         if (
-            $imageFileType != "jpg" && $imageFileType != "jng" && $imageFileType != "jpeg" &&
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" &&
             $imageFileType != "gif"
         ) {
             $_SESSION["errors"]["photoErr"] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";

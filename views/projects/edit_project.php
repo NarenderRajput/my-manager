@@ -40,7 +40,7 @@ $view_path = "../";
             include "../layouts/top_nav.php";
             ?>
             <div class="m-3 p-3">
-                <h2>Create Project</h2>
+                <h2>Edit Project</h2>
               
 
                     <form action="<?php echo '../../controller/UpdateProjectFileController.php?id=' . $project["id"] ?>" method="POST" enctype="multipart/form-data">
@@ -76,8 +76,9 @@ $view_path = "../";
                             <p class="text-danger"><?php echo $errors["deadlineErr"] ?></p>
                         <?php } ?>
 
-                        <img id="preview_img" src="../images/profile-pic.jpeg" alt="" class="w-25"> <br>
+                        <img id="preview_img" src="<?php echo $project["photo"] ? "../../uploads/" . $project["photo"] : "../images/profile-pic.jpeg"; ?>" alt="" class="w-25"> <br>
                         <input type="file"  name="photo" id="upload" style="display: none;">
+                        <input type="hidden" name="old_photo" value="<?php echo $project["photo"] ?>">
                         <?php
                         if (isset($errors["photoErr"])) { ?>
                             <p class="text-danger"><?php echo $errors["photoErr"] ?></p>

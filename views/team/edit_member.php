@@ -52,6 +52,8 @@ $errors = isset($_SESSION["errors"]) ?  $_SESSION["errors"] : [];
                         <p class="text-danger"><?php echo $errors["nameErr"] ?></p>
                     <?php  } ?>
 
+                    <input type="text" name="lastname" value="<?php echo $member["lastname"] ?>" placeholder="Last Name" class="form-control w-50 mb-2 mt-2"> <br>
+
                     <input type="text" name="email" value="<?php echo $member["email"] ?>" placeholder="Email" class="form-control w-50 mb-2 mt-2"> <br>
                     <?php
                     if (isset($errors["emailErr"])) { ?>

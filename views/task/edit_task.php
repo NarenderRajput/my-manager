@@ -81,7 +81,8 @@ $errors = isset($_SESSION["edit_errors"]) ? $_SESSION["edit_errors"] : [];
                     <select name="member_id" class="form-control w-50 mb-2 mt-2">  
                         <?php
                         foreach($members as $member) {?>
-                       <option value="<?php echo $member['id'] ?>" <?php echo $task["member_id"] === $member['id'] ? 'selected' : ''?> ><?php echo $member["firstname"] ?></option>                       
+                        <option value="<?php echo $member['id'] ?>" <?php echo $task["member_id"] === $member['id'] ? 'selected' : ''?> ><?php echo $member["firstname"] ?>
+                        </option>                       
                        <?php } ?>
                     </select> <br>
                     

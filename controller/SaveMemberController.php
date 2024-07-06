@@ -5,7 +5,7 @@ include "../config/db.php";
 
 unset($_SESSION["errors"]);
 
-$name = $email = $password = $data = "";
+$name = $lastname = $email = $password = $data = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION["errors"] = [];
@@ -21,6 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $data .= "'$name',";
             
         }
+    }
+
+    if(empty($_POST["lastname"])) {  
+        $data .= "'',"; 
+    } else {
+        $lastname = test_input($_POST["lastname"]);
+        $data .= "'$lastname',";
     }
 
     if(empty($_POST["email"])) {
@@ -60,7 +67,8 @@ function test_input($data){
 }
 
 function insert_member($conn, $data){
-    $sql = "INSERT INTO users(parent_id, firstname, email, password) VALUES($data)";
+    $sql = "INSERT INTO users(parent_id, firstname, lastname, email, password) VALUES($data)";
+    
     if (mysqli_query($conn, $sql)) {
         header("location: ../views/team/member_listing.php");
     } else {

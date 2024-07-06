@@ -7,7 +7,7 @@ $member_id = $_GET["id"];
 
 unset($_SESSION["errors"]);
 
-$firstname = $email = $password = $data = "";
+$firstname = $lastname = $email = $password = $data = "";
 $_SESSION["errors"] = [];
 
 
@@ -22,6 +22,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $data .= "firstname='$name',";
         }
+    }
+
+    if(empty($_POST["lastname"])) {
+        $data .= "lastname='',";
+    } else {
+        $lastname = test_input($_POST["lastname"]);
+        $data .= "lastname='$lastname',";
     }
 
     if (empty($_POST["email"])) {

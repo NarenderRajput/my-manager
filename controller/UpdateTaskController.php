@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if(empty($_POST["discription"])){
-        $_SESSION["edit_errors"]["discriptionErr"] = "Discription is required";
+        $data .= "discription='',";
     } else {
         $discription = test_input($_POST["discription"]);
         $data .= "discription='$discription',";

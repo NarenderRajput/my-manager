@@ -1,7 +1,11 @@
 <?php
-include "../layouts/header.php";
 include "../../config/app.php";
+include "../layouts/header.php";
+include "../../helper/common.php";
+
 ?>
+
+
 
 <div class="container">
     <div class="p-5">

@@ -54,6 +54,7 @@ include "../layouts/d_header.php";
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">Name</th>
+                            <th scope="col">Last Name</th>
                             <th scope="col">Email id</th>
                             <th scope="col">Password</th>
                             <th scope="col">Action</th>
@@ -66,6 +67,7 @@ include "../layouts/d_header.php";
                             <tr>
                                 
                                 <td><?php echo $member["firstname"] ?></td>
+                                <td><?php echo $member["lastname"] ?></td>
                                 <td><?php echo $member["email"] ?></td>
                                 <td><?php echo $member["password"] ?></td>
                                 <td>

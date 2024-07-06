@@ -18,9 +18,9 @@ if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] > 0) {
 }
 
 $target_dir = "../uploads/";
-$file_name = basename($_FILES["fileToUpload"]["name"]);
+$imageFileType = strtolower(pathinfo($target_dir . basename($_FILES["fileToUpload"]["name"]), PATHINFO_EXTENSION));
+$file_name = time() . "." . $imageFileType;
 $target_file = $target_dir . $file_name;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 
 
@@ -43,6 +43,10 @@ if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpe
   redirect("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
 }
 
+if(isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
+  if(!empty($_POST["old_photo"]) && file_exists("../uploads/" . $_POST["old_photo"]))
+  unlink("../uploads/" . $_POST["old_photo"]);
+}
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
   $data = "photo =" . "'$file_name'";

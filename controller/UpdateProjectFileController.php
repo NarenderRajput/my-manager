@@ -7,7 +7,7 @@ include "ProjectFileUpload.php";
 $project_id = $_GET["id"];
 unset($_SESSION["errors"]);
 
-$name = $url = $discription = $price = $deadline = $data = "";
+$name = $lastname = $url = $discription = $price = $deadline = $data = "";
 
 $_SESSION["errors"] = [];
 
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($_POST["url"])) {
-        $_SESSION["errors"]["urlErr"] = "URL is require";
+        $data .= "url='',";
     } else {
         $url = trim($_POST["url"]);
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $url)) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($_POST["discription"])) {
-        $_SESSION["errors"]["discriptionErr"] = "Discription is require";
+        $data .= "discription='',";
     } else {
         $discription = test_input($_POST["discription"]);
         $data .= "discription='$discription',";
@@ -53,12 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["errors"]["deadlineErr"] = "Deadline is require";
     } else {
         $deadline = test_input($_POST["deadline"]);
-        $data .= "deadline='$deadline',";
+        $data .= "deadline='$deadline'";
+    }
+
+    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] === 0) {
+        if (!empty($_POST["old_photo"]) && file_exists("../uploads/" . $_POST["old_photo"])) {
+            unlink("../uploads/" . $_POST["old_photo"]);
+        }
     }
 
     $file_name = upload_file();
-    if($file_name) {
-        $data .= "photo='$file_name'";
+    if ($file_name) {
+        $data .= ",photo='$file_name'";
     }
 
     if (count($_SESSION["errors"]) > 0) {
@@ -89,6 +95,3 @@ function update_data($conn, $data, $project_id)
     }
     mysqli_close($conn);
 }
-
-
-?>

@@ -25,12 +25,13 @@
         </div>
         <div class="position-absolute-profile-div text-left w-25 h-fix shadow ">
             <div class="position-relative">
-                <img id="preview_img" src="<?php echo isset($user["photo"]) ? "../../uploads/" . $user["photo"] : "../images/profile-pic.jpeg"; ?>" alt="" class="position-relative w-100 p-height">
+                <img id="preview_img" src="<?php echo ($user["photo"]) ? "../../uploads/" . $user["photo"] : "../images/profile-pic.jpeg"; ?>" alt="" class="position-relative w-100 p-height">
                 <div class="position-absolute-profilepic d-flex gap-5  justify-contant-center align-items-baseline">
                     <div>
                         <h5 id="upload_img" class="p-lr m-0">Upload Photo</h5>
                         <form id="form" action="../../controller/photoupdate.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+                            <input type="hidden" name="old_photo" value="<?php echo $user["photo"] ?>">
                         </form>
                     </div>
                     <div>
@@ -96,7 +97,7 @@
                                 </div>
                                 <div class="col mb-3">
                                     <div class="d-flex justify-content-around">
-                                        <input type="text" name="lastname" class="form-control w-75" placeholder="Last name" aria-label="Last name">
+                                        <input type="text" value="<?php echo $user["lastname"]; ?>" name="lastname" class="form-control w-75" placeholder="Last name" aria-label="Last name">
                                     </div>
                                 </div>
                                 <div class="col mb-3">

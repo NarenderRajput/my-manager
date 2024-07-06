@@ -3,7 +3,7 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
 unset($_SESSION['errors']); 
-$name = $data = $email = $password = "";
+$name = $lastname = $data = $email = $password = "";
 $_SESSION["errors"] = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["name"])) {
@@ -15,6 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       $data .= "firstname =" . "'$name',";
     }
+  }
+
+  if(empty($_POST["lastname"])) {
+    $data .= "lastname='',";
+  } else {
+    $lastname = test_input($_POST["lastname"]);
+    $data .= "lastname='$lastname',";
   }
 
 
@@ -53,8 +60,8 @@ function test_input($data)
 }
 
 function update_data($conn, $data) {
-  $sql = "UPDATE users SET " . $data . "WHERE id = " . $_SESSION['users']['id'];
-
+  $sql = "UPDATE users SET " . $data . " WHERE id = " . $_SESSION['users']['id'];
+  
   if (mysqli_query($conn, $sql)) {
     get_user($conn);
   } else {
