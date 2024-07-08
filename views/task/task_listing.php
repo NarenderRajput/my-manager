@@ -10,12 +10,13 @@ $controller = "../../";
 $user_id = $_SESSION["users"]["id"];
 $tasks = [];
 
-function get_task($conn, $user_id) {
+function get_task($conn, $user_id)
+{
     $task = [];
     $sql = "SELECT * FROM tasks WHERE user_id =" . $user_id;
     $result = mysqli_query($conn, $sql);
-    if(mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)){
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $task[] = $row;
         }
     }
@@ -59,21 +60,27 @@ include "../layouts/d_header.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                        foreach($tasks as $k => $task) {
+                        <?php
+                        foreach ($tasks as $k => $task) {
                         ?>
-                        
+
                             <tr>
-                                <td><?php echo $k+1 ?></td>
+                                <td><?php echo $k + 1 ?></td>
                                 <td><?php echo $task["title"] ?></td>
                                 <td><?php echo $task["discription"]  ?></td>
                                 <td><?php echo $task["status"] ?></td>
                                 <td>
-                                    <a href="<?php echo 'edit_task.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Task</button></a> 
+                                    <a href="<?php echo 'edit_task.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Task</button></a>
                                     <a href="<?php echo '../../controller/DeleteTaskController.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Task</button></a>
                                 </td>
-                                     
-                                
+
+
+                            </tr>
+                        <?php } ?>
+
+                        <?php if (count($tasks) === 0) { ?>
+                            <tr>
+                                <td class="text-center" colspan="5">No task found.</td>
                             </tr>
                         <?php } ?>
                     </tbody>

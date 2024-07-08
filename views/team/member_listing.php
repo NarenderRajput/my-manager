@@ -15,12 +15,12 @@ function get_members($conn, $parent_id)
 {
     $member = [];
     $sql = "SELECT * FROM users WHERE parent_id= " . $parent_id;
-    
+
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $member[] = $row;
-        } 
+        }
     }
     return $member;
 }
@@ -65,15 +65,21 @@ include "../layouts/d_header.php";
                         foreach ($members as $member) {
                         ?>
                             <tr>
-                                
+
                                 <td><?php echo $member["firstname"] ?></td>
                                 <td><?php echo $member["lastname"] ?></td>
                                 <td><?php echo $member["email"] ?></td>
                                 <td><?php echo $member["password"] ?></td>
                                 <td>
-                                    <a href="<?php echo 'edit_member.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Member</button></a> 
+                                    <a href="<?php echo 'edit_member.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Member</button></a>
                                     <a href="<?php echo '../../controller/DeleteMemberController.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Member</button></a>
                                 </td>
+                            </tr>
+                        <?php } ?>
+
+                        <?php if (count($members) === 0) { ?>
+                            <tr>
+                                <td class="text-center" colspan="5">No member found.</td>
                             </tr>
                         <?php } ?>
                     </tbody>
