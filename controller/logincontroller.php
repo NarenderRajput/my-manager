@@ -1,7 +1,10 @@
 <?php
-include "../config/app.php";
-include "../helper/common.php";
-include "../config/db.php";
+include __DIR__."/../config/app.php";
+include __DIR__."/../helper/common.php";
+include __DIR__."/../config/db.php";
+
+$conn = db_connect();
+
 $email = $password = $check_b = $data = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,22 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data .= "'$password'";
     }
 
-    if (empty($_POST["check_b"])) {
-        $_SESSION["check_bErr"] = " Please mark Checkbox";
-    } else {
-        echo $check_b;
-    }
 
     if (isset($_SESSION['emailErr']) && isset($_SESSION['passwordErr']) && isset($_SESSION["check_bErr"])) {
-        header('location: '.ROOT.'/views/auth/log_in.php');
+        header('location: '.ROOT.'/login.php');
     } else {
-
-        if (empty($emailErr) && empty($passwordErr) && empty($check_bErr)) {
         check_data($email, $password, $conn);
-        }
     }
 
- }
+}
 
 
 function test_input($data) {
@@ -50,16 +45,21 @@ function test_input($data) {
 }
 
 function check_data($email, $password, $conn) {
-    $sql = "SELECT * FROM users where email = '$email' and password = '$password'";
+    $sql = "SELECT * FROM users where email = '$email'";
+
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $_SESSION['users'] = $row;
-        }
-        header('location: ../views/dashboard.php');       
-    } else {
-        echo "Failed to Login";
+        $user = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['users'] = $user;
+            header('location: '.ROOT.'/dashboard.php');
+
+            mysqli_close($conn);
+            exit;
+        }     
     }
+    
+    echo "Failed to Login";
     mysqli_close($conn);
 }
 

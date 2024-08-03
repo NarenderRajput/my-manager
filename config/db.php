@@ -1,14 +1,23 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "db";
 
+define('DB', 'mymanager');
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+function connect(
+    $dbname = null,
+    $servername = "localhost",
+    $username = "root",
+    $password = ""
+) {
 
-if (!$conn) {
-    die ("connection failed:" . mysqli_connect_error());
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    if (!$conn) {
+        die("connection failed:" . mysqli_connect_error());
+    }
+    //echo "Connected successfully" . PHP_EOL;
+    return $conn;
 }
-//echo "Connected successfully" . PHP_EOL;
-?>
+
+function db_connect() {
+    return connect(DB);
+}

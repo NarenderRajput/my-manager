@@ -17,7 +17,7 @@
 
 
 .img-w {
-    height: 450px;
+    height: 100%;
     width: 100%;
 }
 
@@ -56,7 +56,7 @@
 } 
 
 .h-full {
-    height: 800px!important;
+    height: 100vh;
 }
 
 .h-fix {

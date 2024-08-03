@@ -2,18 +2,18 @@
     <nav class="">
 
       <ul class="nav navbar-nav m-3">
-        <a href="../dashboard.php">
-          <li class="nav-item"><i class="fa-3x fa-solid fa-database m-3 wh-50"></i></li>
+        <a href="<?php echo __DIR__.'/../../dashboard.php' ?>">
+          <li class="nav-item" title="Dashboard"><i class="fa-solid fa-bars-progress fa-3x m-3 wh-50"></i></li>
         </a>
         
-        <a href="<?php echo $view_path. 'projects/project_listing.php' ?>" >
-        <li class="nav-item"><i class="fa-3x fa-solid fa-earth-americas m-3 wh-50"></i></li>
+        <a href="<?php echo __DIR__.'/../../projects/project_listing.php' ?>" >
+        <li class="nav-item" title="Projects"><i class="fa-solid fa-folder fa-3x m-3 wh-50"></i></li>
         </a>
-        <a href="<?php echo $view_path. 'team/member_listing.php' ?>">
-        <li class="nav-item"><i class="fa-3x fa-regular fa-circle-play m-3 wh-50"></i></li>
+        <a href="<?php echo __DIR__.'/../../team/member_listing.php' ?>">
+        <li class="nav-item" title="Members"><i class="fa-solid fa-users-between-lines fa-3x m-3 wh-50"></i></li>
         </a>
-        <a href="<?php echo $view_path . 'task/task_listing.php' ?>">
-        <li class="nav-item"><i class="fa-3x fa-solid fa-list-check m-3 wh-50"></i></li>
+        <a href="<?php echo __DIR__.'/../../task/task_listing.php' ?>">
+        <li class="nav-item" title="Tasks"><i class="fa-solid fa-list-check fa-3x m-3 wh-50"></i></li>
         </a>
       </ul>
 

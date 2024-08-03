@@ -1,9 +1,11 @@
 <?php
 
-include "../config/app.php";
-include "../helper/common.php";
-include "../config/login_guard.php";
-include "../config/db.php";
+include __DIR__."/config/app.php";
+include __DIR__."/helper/common.php";
+include __DIR__."/config/login_guard.php";
+include __DIR__."/config/db.php";
+
+$conn = db_connect();
 
 $view_path = "";
 $asset = "";
@@ -29,18 +31,17 @@ $tasks = get_task($conn, $member_id);
 
 
 <?php
-include "../views/layouts/d_header.php";
-$controller_path = "../";
+include __DIR__."/views/layouts/d_header.php";
 ?>
 <div class="h-full">
   <div class="d-flex h-full bg-danger-subtle ">
     <?php
-    include "../views/layouts/side_nav.php";
+    include __DIR__."/views/layouts/side_nav.php";
     ?>
     <div class=" card w-100 border-bottom-0  ">
       <div class=" card-body">
         <?php
-        include "../views/layouts/top_nav.php";
+        include __DIR__."/views/layouts/top_nav.php";
         ?>
 
         <div class="w-100 ">
@@ -70,7 +71,7 @@ $controller_path = "../";
                     <td><?php echo $task["status"] ?></td>
                     <td>
                       <a href="<?php echo 'task/edit_task.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Task</button></a>
-                      <a href="<?php echo '../controller/DeleteTaskController.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Task</button></a>
+                      <a href="<?php echo __DIR__.'/controller/DeleteTaskController.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Task</button></a>
                     </td>
 
 
@@ -78,12 +79,9 @@ $controller_path = "../";
 
                 <?php } ?>
                 <?php if (count($tasks) === 0) { ?>
-
-
                   <tr>
                     <td class="text-center" colspan="5">No task Found.</td>
                   </tr>
-
                 <?php } ?>
               </tbody>
             </table>
@@ -96,5 +94,5 @@ $controller_path = "../";
 
 
 <?php
-include "../views/layouts/d_footer.php";
+include __DIR__."/views/layouts/d_footer.php";
 ?>

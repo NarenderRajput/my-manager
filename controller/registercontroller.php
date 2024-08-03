@@ -1,7 +1,9 @@
 <?php
-include "../config/app.php";
-include "../config/db.php";
-include "../helper/common.php";
+include __DIR__."/../config/app.php";
+include __DIR__."/../config/db.php";
+include __DIR__."/../helper/common.php";
+
+$conn = db_connect();
 
 $name =  $data = $email = $password = "";
 
@@ -39,12 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["password"])) {
     $_SESSION["passwordErr"] = "Password is Required ";
   } else {
-    $password = test_input($_POST["password"]);
+    $password = password_hash(test_input($_POST["password"]), PASSWORD_BCRYPT);
     $data .= "'$password'";
   }
   
   if (isset($_SESSION["nameErr"]) || isset($_SESSION["emailErr"]) || isset($_SESSION["passwordErr"])) {
-    header('location:'.ROOT.'/views/auth/register.php');
+    header('location:'.ROOT.'/register.php');
   } else {
     insert_data($conn, $data);
   }
@@ -63,12 +65,19 @@ function insert_data($conn, $data)
 {
   $sql = "INSERT INTO users(firstname, lastname, email, password)
   VALUES($data)";
-  echo $sql;
+  
   if (Mysqli_query($conn, $sql)) {
-    echo "New record created Successfully";
+    //echo "New record created Successfully";
+    mysqli_close($conn);
+    redirectToLogin();
   } else {
     echo "Error : " . $sql . "<br>" . mysqli_error($conn);
   }
 
   mysqli_close($conn);
+}
+
+function redirectToLogin() {
+  header('location: '.ROOT.'/login.php', 302);
+  exit;
 }

@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 
 session_start();
 
-define('ROOT', '/login-register-form');
+define('BASE_URL', 'http://localhost/my-manager');
+define('ROOT', '/my-manager');
 
 ?>
