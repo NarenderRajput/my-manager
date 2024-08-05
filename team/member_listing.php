@@ -1,7 +1,9 @@
 <?php
-include "../../config/app.php";
-include "../../helper/common.php";
-include "../../config/db.php";
+include "../config/app.php";
+include "../helper/common.php";
+include "../config/db.php";
+
+$conn = db_connect();
 
 $view_path = '../';
 $controller_path = '../../';
@@ -9,7 +11,6 @@ $asset = '../';
 
 $parent_id = $_SESSION["users"]["id"];
 $members = [];
-
 
 function get_members($conn, $parent_id)
 {
@@ -29,7 +30,7 @@ $members = get_members($conn, $parent_id);
 
 
 
-include "../layouts/d_header.php";
+include "../views/layouts/d_header.php";
 ?>
 
 
@@ -37,12 +38,12 @@ include "../layouts/d_header.php";
 
     <div class="d-flex h-full bg-danger-subtle ">
         <?php
-        include "../layouts/side_nav.php";
+        include "../views/layouts/side_nav.php";
         ?>
         <div class=" card w-100   ">
 
             <?php
-            include "../layouts/top_nav.php";
+            include "../views/layouts/top_nav.php";
             ?>
             <div class="p-4">
                 <a href="create_member.php">
@@ -92,5 +93,5 @@ include "../layouts/d_header.php";
 
 
 <?php
-include "../layouts/d_footer.php";
+include "../views/layouts/d_footer.php";
 ?>

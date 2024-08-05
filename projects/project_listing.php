@@ -1,7 +1,9 @@
 <?php
-include "../../config/app.php";
-include "../../helper/common.php";
-include "../../config/db.php";
+include "../config/app.php";
+include "../helper/common.php";
+include "../config/db.php";
+
+$conn = db_connect();
 $asset = '../';
 $view_path = "../";
 
@@ -23,7 +25,7 @@ function get_projects($conn, $user_id)
 
 $projects = get_projects($conn, $user_id);
 
-include "../layouts/d_header.php";
+include "../views/layouts/d_header.php";
 ?>
 
 
@@ -31,12 +33,12 @@ include "../layouts/d_header.php";
 
     <div class="d-flex h-full bg-danger-subtle ">
         <?php
-        include "../layouts/side_nav.php";
+        include "../views/layouts/side_nav.php";
         ?>
         <div class=" card w-100   ">
 
             <?php
-            include "../layouts/top_nav.php";
+            include "../views/layouts/top_nav.php";
             ?>
             <div class="p-4">
                 <a href="../projects/create_project.php">
@@ -90,5 +92,5 @@ include "../layouts/d_header.php";
 
 
 <?php
-include "../layouts/d_footer.php";
+include "../views/layouts/d_footer.php";
 ?>

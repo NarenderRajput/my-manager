@@ -8,6 +8,7 @@ $sql = "CREATE TABLE users (
     email VARCHAR(191) NOT NULL,
     password VARCHAR(191) NOT NULL,
     parent_id INT(6) UNSIGNED,
+    photo VARCHAR(191),
     reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 

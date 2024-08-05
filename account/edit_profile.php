@@ -1,8 +1,8 @@
 <?php
 
-include "../../config/app.php";
-include "../../helper/common.php";
-include "../../config/login_guard.php";
+include "../config/app.php";
+include "../helper/common.php";
+include "../config/login_guard.php";
 
 $asset = "../";
 $controller_path = "../../";
@@ -10,9 +10,8 @@ $view_path = "../../";
 
 ?>
 
-
 <?php
-include "../layouts/d_header.php";
+include "../views/layouts/d_header.php";
 ?>
 
 <?php
@@ -24,7 +23,7 @@ $user = $_SESSION['users'];
 <div class="h-full">
     <div class="d-flex h-full bg-danger-subtle text-center">
         <?php
-        include "../layouts/side_nav.php";
+        include "../views/layouts/side_nav.php";
         ?>
         <div class=" card w-100 border-bottom-0 ">
             <div class=" card-body">
@@ -33,7 +32,7 @@ $user = $_SESSION['users'];
                     <p class="text-danger"><?php echo $_SESSION['error'] ?></p>
                 <?php  } ?>
                 <?php
-                include "../layouts/top_nav.php";
+                include "../views/layouts/top_nav.php";
                 ?>
 
                 <?php
@@ -47,5 +46,5 @@ $user = $_SESSION['users'];
 
 
 <?php
-include "../layouts/d_footer.php";
+include "../views/layouts/d_footer.php";
 ?>

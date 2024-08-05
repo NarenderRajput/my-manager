@@ -1,7 +1,7 @@
 <?php
 
 include_once __DIR__.'/../config/db.php';
-$conn = connect(DB);
+$conn = db_connect();
 
 $tables = [
     'users', 'projects', 'tasks'

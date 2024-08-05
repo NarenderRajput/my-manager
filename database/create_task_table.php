@@ -4,6 +4,7 @@ $sql = "CREATE TABLE tasks(
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     member_id INT(6) UNSIGNED,
+    user_id INT(6) UNSIGNED,
     discription VARCHAR(255),
     status VARCHAR(15) NOT NULL
 )";
