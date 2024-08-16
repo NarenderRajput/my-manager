@@ -1,13 +1,7 @@
 <?php
-
 include "../config/app.php";
 include "../helper/common.php";
 include "../config/login_guard.php";
-
-$asset = "../";
-$controller_path = "../../";
-$view_path = "../../"; 
-
 ?>
 
 <?php
@@ -17,6 +11,10 @@ include "../views/layouts/d_header.php";
 <?php
 
 $errors =  isset($_SESSION["errors"]) ? $_SESSION["errors"] : [];
+$error = isset($_SESSION["error"]) ? $_SESSION["error"] : '';
+unset($_SESSION['errors']);
+unset($_SESSION['error']);
+// design
 $user = $_SESSION['users'];
 ?>
 
@@ -28,8 +26,8 @@ $user = $_SESSION['users'];
         <div class=" card w-100 border-bottom-0 ">
             <div class=" card-body">
                 <?php
-                if (isset($_SESSION['error'])) { ?>
-                    <p class="text-danger"><?php echo $_SESSION['error'] ?></p>
+                if (isset($error)) { ?>
+                    <p class="text-danger"><?php echo $error ?></p>
                 <?php  } ?>
                 <?php
                 include "../views/layouts/top_nav.php";

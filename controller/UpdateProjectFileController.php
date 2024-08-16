@@ -3,6 +3,7 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
 include "ProjectFileUpload.php";
+$conn = db_connect();
 
 $project_id = $_GET["id"];
 unset($_SESSION["errors"]);
@@ -68,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (count($_SESSION["errors"]) > 0) {
-        header("location: ../views/projects/edit_project.php");
+        header("location: ../projects/edit_project.php");
     } else {
 
         update_data($conn, $data, $project_id);
@@ -89,7 +90,7 @@ function update_data($conn, $data, $project_id)
     $sql = "UPDATE projects SET " . $data . " WHERE id = " . $project_id;
     
     if (mysqli_query($conn, $sql)) {
-        header("location: ../views/projects/project_listing.php");
+        header("location: ../projects/project_listing.php");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }

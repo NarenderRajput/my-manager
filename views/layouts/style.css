@@ -1,13 +1,19 @@
+*,html,body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .w-75per {
     width: 75%;
 }
 
 .w-200px {
     width: 200px;
-} 
+}
 
 .d-none {
-    display: block!important;
+    display: block !important;
 }
 
 .ii-wh {
@@ -50,10 +56,14 @@
     border-radius: 19px;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+}
+
 .wh-50 {
     width: 50px;
     height: 50px;
-} 
+}
 
 .h-full {
     height: 100vh;
@@ -100,22 +110,23 @@
 }
 
 .position-absolute-top {
-    position: absolute!important;
+    position: absolute !important;
     text-align: left;
     bottom: 10px;
     color: white;
 }
 
 .position-absolute-profile-div {
-    position: absolute!important;
+    position: absolute !important;
     top: 30%;
     left: 50px;
 }
 
 .position-absolute-profilepic {
-    position: absolute;
-    bottom: 5%;
-    left: 20%;
+	position: absolute;
+	bottom: 5%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .bg-transparent {
@@ -125,12 +136,38 @@
 
 }
 
+.change-pic {
+    z-index: 99;
+    color: white;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: ease-in-out all 0.3s;
+}
+
+.upload-pic-wrapper:hover .change-pic {
+    opacity: 1;
+}
+
+.change-pic i {
+    position: absolute;
+    right: 50%;
+    top: 40%;
+    transform: translate(32%, -40%);
+}
+
+.z-index99 {
+    z-index: 99;
+}
+
 .form-w {
     width: 75%;
     transform: translateX(5%);
 }
 
-@media only screen and (max-width:600px)  {
+@media only screen and (max-width:600px) {
 
     .d-none {
         display: none;
@@ -139,6 +176,37 @@
     .w-50 {
         width: 100%;
     }
+}
 
+/** ------- ------- --------- **/
 
+.pic-box {
+    position: relative;
+    width: auto;
+}
+
+.pic-box, .pic-box img {
+    width: 200px;
+    height: 200px;
+}
+
+.pic-box .overlay {
+    background-color: rgba(0, 0, 0, 0.19);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: ease-in-out all 0.2s;
+    color: white;
+}
+
+.pic-box i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pic-box:hover .overlay {
+    opacity: 1;
 }

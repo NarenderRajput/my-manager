@@ -2,6 +2,8 @@
 include "../config/app.php";
 include "../config/db.php";
 
+$conn = db_connect();
+
 if (isset($_SESSION['users']['id'])) {
     delete_data($conn, $_SESSION['users']['id']);
 } else {

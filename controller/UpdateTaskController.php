@@ -3,11 +3,11 @@ include "../config/app.php";
 include "../config/db.php";
 include "../helper/common.php";
 
+$conn = db_connect();
 $task_id = $_GET["id"];
 unset($_SESSION["edit_errors"]);
 
 $title = $discription = $member_id = $status = $data = "";
-
 
 $_SESSION["edit_errors"] = [];
 
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if(count($_SESSION["edit_errors"]) > 0) {
-        header("location: ../views/task/edit_task.php");
+        header("location: ../task/edit_task.php");
     } else {
         
         update_task($conn, $data, $task_id);
@@ -66,7 +66,7 @@ function update_task($conn, $data, $task_id) {
     $sql = "UPDATE tasks SET " . $data . "WHERE id =" . $task_id;
 
     if (mysqli_query($conn, $sql)) {
-        header("location: ../views/task/task_listing.php");
+        header("location: ../task/task_listing.php");
     } else {
         echo "Error" . $sql . mysqli_error($conn);
     }

@@ -14,7 +14,6 @@ function redirect($error)
   exit;
 }
 
-
 if (!isset($_FILES["fileToUpload"]) || $_FILES["fileToUpload"]["error"] > 0) {
   redirect("File is missing");
 }
@@ -24,12 +23,10 @@ $imageFileType = strtolower(pathinfo($target_dir . basename($_FILES["fileToUploa
 $file_name = time() . "." . $imageFileType;
 $target_file = $target_dir . $file_name;
 
-
 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 if ($check === false) {
   redirect("Something went Wrong!");
 }
-
 
 if (file_exists($target_file)) {
   redirect("File already exist");
@@ -39,12 +36,23 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
   redirect("Sorry, your file is too large.");
 }
 
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+if (
+  $imageFileType != "jpg"
+  && $imageFileType != "png"
+  && $imageFileType != "jpeg"
+  && $imageFileType != "gif"
+) {
   redirect("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
 }
 
-if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
-  if (!empty($_POST["old_photo"]) && file_exists("../uploads/" . $_POST["old_photo"])) {
+if (
+  isset($_FILES["fileToUpload"])
+  && $_FILES["fileToUpload"]["error"] === 0
+) {
+  if (
+    !empty($_POST["old_photo"])
+    && file_exists("../uploads/" . $_POST["old_photo"])
+  ) {
     unlink("../uploads/" . $_POST["old_photo"]);
   }
 }

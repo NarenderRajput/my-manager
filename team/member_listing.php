@@ -72,8 +72,8 @@ include "../views/layouts/d_header.php";
                                 <td><?php echo $member["email"] ?></td>
                                 <td><?php echo $member["password"] ?></td>
                                 <td>
-                                    <a href="<?php echo 'edit_member.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Member</button></a>
-                                    <a href="<?php echo '../../controller/DeleteMemberController.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Member</button></a>
+                                    <a href="<?php echo 'edit_member.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit</button></a>
+                                    <a href="<?php echo '../../controller/DeleteMemberController.php?id=' . $member["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete</button></a>
                                 </td>
                             </tr>
                         <?php } ?>

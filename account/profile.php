@@ -17,25 +17,27 @@
             <img src="../views/images/Nature.png" class="w-100 img-h-50" alt="">
             <div class="position-absolute-top w-100 d-flex justify-content-center text-left">
                 <div class="transform-trans">
-                    <h1><b>Crid Kore</b> <i class="fa-solid fa-shield" style="color: #FFD43B;"></i> </h1>
-                    <p class="fs-5"><b>Kaduna, Nigeria</b></p>
+                    <h1><b><?php echo $user['firstname'] ?></b> <i class="fa-solid fa-shield" style="color: #FFD43B;"></i> </h1>
+                    <p class="fs-5"><b><?php echo $user['email']  ?></b></p>
                 </div>
             </div>
         </div>
         <div class="position-absolute-profile-div text-left w-25 h-fix shadow ">
-            <div class="position-relative">
-                <img id="preview_img" src="<?php echo ($user["photo"]) ? "../../uploads/" . $user["photo"] : "../views/images/profile-pic.jpeg"; ?>" alt="" class="position-relative w-100 p-height">
-                <div class="position-absolute-profilepic d-flex gap-5  justify-contant-center align-items-baseline">
+            <div class="position-relative upload-pic-wrapper">
+                
+                <span class="position-absolute change-pic" id="change-pic"><i class="fa-solid fa-pen-to-square"></i></span>
+
+                <img id="preview_img" src="<?php echo ($user["photo"]) ? "../uploads/" . $user["photo"] : "../views/images/profile-pic.jpeg"; ?>" alt="" class="position-relative w-100 p-height">
+                <div class="position-absolute-profilepic d-flex gap-5  justify-contant-center align-items-baseline z-index99">
                     <div>
-                        <h5 id="upload_img" class="p-lr m-0">Upload Photo</h5>
                         <form id="form" action="../controller/PhotoUpdate.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
                             <input type="hidden" name="old_photo" value="<?php echo $user["photo"] ?>">
+
+                            <button type="submit" id="upload_img" class="btn btn-primary">Save Photo</button>
                         </form>
                     </div>
-                    <div>
-                        <p class="icon"><i class="fa-solid fa-ellipsis" style="color: #00ffff;"></i></p>
-                    </div>
+                    
                 </div>
             </div>
             <div class="m-3 text-l">
@@ -70,9 +72,16 @@
                     </div>
                 </div>
                 <div class="w-100">
-                    <p class="p-transform"><i class="fa-regular fa-circle-play play-i" style="color: #000000;"></i>
-                        <img src="../views/images/musicwave.png" class="ii-wh" alt="">
-                    </p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <i class="fa-regular fa-circle-play fs-1" style="color: #000000;"></i>
+                        <div class="sound-waves ms-2" style="
+                        background-image: url('../views/images/musicwave.png');
+                        width: 90%;
+                        height: 100px;
+                        background-position: center;
+                        background-size: contain;
+                        "></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,7 +119,7 @@
                                 </div>
                                 <div class="col mb-3">
                                     <div class="d-flex justify-content-around">
-                                        <input type="password" name="password" value="<?php echo $user['password']; ?>" class="form-control w-75" placeholder="Password" aria-label="Password">
+                                        <input type="password" name="password" class="form-control w-75" placeholder="Password" aria-label="Password">
                                     </div>
                                     <?php
                                     if (isset($errors['passwordErr'])) { ?>
@@ -131,19 +140,16 @@
         const upload = document.querySelector("#fileToUpload");
         const form = document.getElementById("form");
         const preview_img = document.getElementById("preview_img");
+        const change_pic_overlay = document.getElementById('change-pic');
+        upload_photo.setAttribute('disabled', true);
 
-        preview_img.addEventListener("click", function() {
+        change_pic_overlay.addEventListener("click", function() {
             upload.click();
         })
 
         upload.addEventListener('change', function() {
-            console.log(this.files[0], form);
-           // form.submit();
+            upload_photo.removeAttribute('disabled');
            preview_img.src = URL.createObjectURL(this.files[0]);
-        })
-
-        upload_photo.addEventListener('click', function(){
-            form.submit();
         })
         
     </script>

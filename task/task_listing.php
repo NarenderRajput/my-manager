@@ -68,8 +68,8 @@ include "../views/layouts/d_header.php";
                                 <td><?php echo $task["discription"]  ?></td>
                                 <td><?php echo $task["status"] ?></td>
                                 <td>
-                                    <a href="<?php echo 'edit_task.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Task</button></a>
-                                    <a href="<?php echo '../controller/DeleteTaskController.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete Task</button></a>
+                                    <a href="<?php echo 'edit_task.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit</button></a>
+                                    <a href="<?php echo '../controller/DeleteTaskController.php?id=' . $task["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Delete</button></a>
                                 </td>
                             </tr>
                         <?php } ?>

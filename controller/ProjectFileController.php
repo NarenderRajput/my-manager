@@ -4,6 +4,7 @@ include "../helper/common.php";
 include "../config/db.php";
 include "ProjectFileUpload.php";
 
+$conn = db_connect();
 
 unset($_SESSION["errors"]);
 
@@ -65,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
     if(count($_SESSION["errors"]) > 0) {
-        header("location: ../views/projects/create_project.php");
+        header("location: ../projects/create_project.php");
     } else {
 
         insert_data($conn, $data);
@@ -90,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sql = "INSERT INTO projects(user_id, projectname, url, discription, price, deadline, photo) VALUES($data)";
         
         if(mysqli_query($conn, $sql)) {
-            header("location: ../views/projects/project_listing.php");
+            header("location: ../projects/project_listing.php");
         } else {
             echo "Error insert data: " . $sql . "<br>" . mysqli_error($conn);
         }

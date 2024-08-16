@@ -3,9 +3,9 @@ include "../config/app.php";
 include "../config/db.php";
 include "../helper/common.php";
 
-unset($_SESSION["errors"]);
+$conn = db_connect();
 
-$title= $discription = $member_id = $status = $data = "";
+$title = $discription = $member_id = $status = $data = "";
 
 if($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION["errors"] = [];
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if(count($_SESSION["errors"]) > 0) {
-        header("location: ../views/task/create_task.php");
+        header("location: ../task/create_task.php");
     } else {
     
         insert_task($conn, $data);
@@ -60,7 +60,7 @@ function insert_task($conn, $data) {
     $sql = "INSERT INTO tasks(user_id, title, discription, member_id, status) VALUES($data)";
     
     if(mysqli_query($conn, $sql)) {
-        header("location: ../views/task/task_listing.php");
+        header("location: ../task/task_listing.php");
     } else{
         echo "Error insert data" . $sql . "<br>" . mysqli_error($conn);
     }

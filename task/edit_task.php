@@ -3,12 +3,12 @@ $asset = "../";
 $controller_path = "../../";
 $view_path = "../";
 
-include "../../config/app.php";
-include "../../helper/common.php";
-include "../../config/db.php";
-include "../layouts/d_header.php";
+include "../config/app.php";
+include "../helper/common.php";
+include "../config/db.php";
+include "../views/layouts/d_header.php";
 
-
+$conn = db_connect();
 
 $task_id = $_GET["id"];
 
@@ -46,27 +46,26 @@ function get_members($conn, $user_id)
 
 $members = get_members($conn, $user_id);
 
-
 $errors = isset($_SESSION["edit_errors"]) ? $_SESSION["edit_errors"] : [];
-
+unset($_SESSION["edit_errors"]);
 ?>
 
 <div class="w-100">
 
     <div class="d-flex h-full bg-danger-subtle ">
         <?php
-        include "../layouts/side_nav.php";
+        include "../views/layouts/side_nav.php";
         ?>
-        <div class=" card w-100   ">
+        <div class="card w-100">
 
             <?php
-            include "../layouts/top_nav.php";
+            include "../views/layouts/top_nav.php";
             ?>
             <div class="m-3 p-3">
                 <h2>Edit Task</h2>
-                <form action="<?php echo '../../controller/UpdateTaskController.php?id=' . $task["id"] ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?php echo '../controller/UpdateTaskController.php?id=' . $task["id"] ?>" method="POST" enctype="multipart/form-data">
 
-                    <input type="text" name="name" value="<?php echo $task["title"] ?>" placeholder="Title" class="form-control w-50 mb-2 mt-2"> <br>
+                    <input type="text" name="name" value="<?php echo $task["title"] ?>" placeholder="Title" class="form-control w-50 mb-2 mt-2">
                     <?php
                     if (isset($errors["nameErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["nameErr"] ?></p>
@@ -76,7 +75,7 @@ $errors = isset($_SESSION["edit_errors"]) ? $_SESSION["edit_errors"] : [];
                     <?php
                     if (isset($errors["discriptionErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["discriptionErr"] ?></p>
-                    <?php } ?> <br>
+                    <?php } ?>
 
                     <select name="member_id" class="form-control w-50 mb-2 mt-2">  
                         <?php
@@ -84,13 +83,13 @@ $errors = isset($_SESSION["edit_errors"]) ? $_SESSION["edit_errors"] : [];
                         <option value="<?php echo $member['id'] ?>" <?php echo $task["member_id"] === $member['id'] ? 'selected' : ''?> ><?php echo $member["firstname"] ?>
                         </option>                       
                        <?php } ?>
-                    </select> <br>
+                    </select>
                     
                     <select name="status" class="form-control w-50 mb-2 mt-2">
                         <option value="pending" <?php echo $task["status"] === 'pending' ? 'selected' : '' ?> >Panding</option>
                         <option value="processing"  <?php echo $task["status"] === 'processing' ? 'selected' : '' ?>>Processing</option>
                         <option value="complete"  <?php echo $task["status"] === 'complete' ? 'selected' : '' ?>>Complete</option>
-                    </select> <br>
+                    </select>
                     
                     <?php
                     if (isset($errors["statusErr"])) { ?>

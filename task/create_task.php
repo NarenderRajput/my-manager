@@ -3,14 +3,15 @@ $asset = "../";
 $controller_path = "../../";
 $view_path = "../";
 
-include "../../config/app.php";
-include "../../helper/common.php";
-include "../../config/db.php";
-include "../layouts/d_header.php";
+include "../config/app.php";
+include "../helper/common.php";
+include "../config/db.php";
+include "../views/layouts/d_header.php";
+
+$conn = db_connect();
 
 $user_id = $_SESSION["users"]["id"];
 $members = [];
-
 
 function get_members($conn, $user_id)
 {
@@ -28,27 +29,26 @@ function get_members($conn, $user_id)
 
 $members = get_members($conn, $user_id);
 
-
 $errors = isset($_SESSION["errors"]) ? $_SESSION["errors"] : [];
-
+unset($_SESSION["errors"]);
 ?>
 
 <div class="w-100">
 
     <div class="d-flex h-full bg-danger-subtle ">
         <?php
-        include "../layouts/side_nav.php";
+        include "../views/layouts/side_nav.php";
         ?>
         <div class=" card w-100   ">
 
             <?php
-            include "../layouts/top_nav.php";
+            include "../views/layouts/top_nav.php";
             ?>
             <div class="m-3 p-3">
                 <h2>Create Task</h2>
-                <form action="../../controller/SaveTaskController.php" method="POST" enctype="multipart/form-data">
+                <form action="../controller/SaveTaskController.php" method="POST" enctype="multipart/form-data">
 
-                    <input type="text" name="name" placeholder="Title" class="form-control w-50 mb-2 mt-2"> <br>
+                    <input type="text" name="name" placeholder="Title" class="form-control w-50 mb-2 mt-2">
                     <?php
                     if (isset($errors["nameErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["nameErr"] ?></p>
@@ -65,7 +65,7 @@ $errors = isset($_SESSION["errors"]) ? $_SESSION["errors"] : [];
                         foreach ($members as $member) { ?>
                             <option value="<?php echo $member["id"] ?>"><?php echo $member["firstname"] ?></option>
                         <?php } ?>
-                    </select> <br>
+                    </select> 
 
                     <?php
                     if (isset($errors["member_idErr"])) { ?>
@@ -76,16 +76,14 @@ $errors = isset($_SESSION["errors"]) ? $_SESSION["errors"] : [];
                         <option value="pending">Panding</option>
                         <option value="processing">Processing</option>
                         <option value="complete">Complete</option>
-                    </select> <br>
+                    </select> 
 
                     <?php
                     if (isset($errors["statusErr"])) { ?>
                         <p class="text-danger"><?php echo $errors["statusErr"] ?></p>
                     <?php } ?>
 
-
-                    <button type="submit" class="mt-2 p-2 ps-4 pe-4 btn btn-primary" class="w-75">Submit</button>
-
+                    <button type="submit" class="mt-2 p-2 ps-4 pe-4 btn btn-primary">Submit</button>
 
                 </form>
             </div>

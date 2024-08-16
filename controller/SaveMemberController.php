@@ -3,7 +3,7 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
 
-unset($_SESSION["errors"]);
+$conn = db_connect();
 
 $name = $lastname = $email = $password = $data = "";
 
@@ -50,13 +50,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if(count($_SESSION["errors"]) > 0) {
-        header("location: ../views/team/create_member.php");
+        header("location: ../team/create_member.php");
     } else {
         
         insert_member($conn, $data);
     }
-
-
 }
 
 function test_input($data){
@@ -70,7 +68,7 @@ function insert_member($conn, $data){
     $sql = "INSERT INTO users(parent_id, firstname, lastname, email, password) VALUES($data)";
     
     if (mysqli_query($conn, $sql)) {
-        header("location: ../views/team/member_listing.php");
+        header("location: ../team/member_listing.php");
     } else {
         echo "Error insert data" . $sql . "<br>" . mysqli_error($conn);
     }

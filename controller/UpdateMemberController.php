@@ -3,6 +3,7 @@ include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
 
+$conn = db_connect();
 $member_id = $_GET["id"];
 
 unset($_SESSION["errors"]);
@@ -50,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (count($_SESSION["errors"]) > 0) {
-        header("location: ../views/team/edit_member.php");
+        header("location: ../team/edit_member.php");
     } else {
         update_member($conn, $data, $member_id);
     }
@@ -67,14 +68,11 @@ function update_member($conn, $data, $member_id) {
     $sql = "UPDATE users SET " . $data . " WHERE id =" . $member_id;
     
     if (mysqli_query($conn, $sql)) {
-        header("location: ../views/team/member_listing.php");
+        header("location: ../team/member_listing.php");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
     mysqli_close($conn);
 }
-
-
-
 
 ?>

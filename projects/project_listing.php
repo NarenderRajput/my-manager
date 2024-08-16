@@ -2,6 +2,7 @@
 include "../config/app.php";
 include "../helper/common.php";
 include "../config/db.php";
+include "../config/login_guard.php";
 
 $conn = db_connect();
 $asset = '../';
@@ -64,15 +65,18 @@ include "../views/layouts/d_header.php";
                         ?>
                             <tr>
                                 <th scope="row">
-                                    <img src="<?php echo '../../uploads/' . $project["photo"] ?>">
+                                    <img src="<?php echo '../uploads/' . $project["photo"] ?>" class="responsive-image" style="
+                                        width: 100px;
+                                        height: 100px;
+                                    ">
                                 </th>
                                 <td><?php echo $project["projectname"] ?></td>
                                 <td><?php echo $project["url"] ?></td>
                                 <td><?php echo $project["discription"] ?></td>
                                 <td><?php echo $project["price"] ?></td>
                                 <td><?php echo $project["deadline"] ?></td>
-                                <td><a href="<?php echo 'edit_project.php?id=' . $project["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit Project</button></a>
-                                    <a href="<?php echo '../../controller/DeleteProjectFileController.php?id=' . $project["id"] ?>"><button type="button" class="btn btn-primary">Delete Project</button></a>
+                                <td><a href="<?php echo 'edit_project.php?id=' . $project["id"] ?>"><button type="button" class=" me-2 btn btn-primary">Edit</button></a>
+                                    <a href="<?php echo '../controller/DeleteProjectFileController.php?id=' . $project["id"] ?>"><button type="button" class="btn btn-primary">Delete</button></a>
                                 </td>
                             </tr>
                         <?php } ?>
